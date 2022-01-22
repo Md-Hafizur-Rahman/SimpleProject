@@ -1,13 +1,13 @@
 from os import name
 from django.shortcuts import render 
 from tuition.models import Contact
+from django.views.generic import TemplateView
 
-def home(req):
-    if req.method=='POST':
-        name=req.POST['name']
-        phone=req.POST['phone']
-        content=req.POST['content']
-        obj=Contact(name=name,phone=phone,content=content)
-        obj.save()
-    return render(req,'home.html')
-    
+class HomeView(TemplateView):
+    template_name = "home2.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["mag"] = 'welcome to the website.'
+        return context
+        
