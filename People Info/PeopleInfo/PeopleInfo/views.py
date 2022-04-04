@@ -3,6 +3,9 @@ from django.shortcuts import render
 from tuition.models import Contact
 from django.views.generic import TemplateView
 
+def home(req):
+    return render(req,'basic.html')
+    
 class HomeView(TemplateView):
     template_name = "home2.html"
 
@@ -10,4 +13,3 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["mag"] = 'welcome to the website.'
         return context
-        
